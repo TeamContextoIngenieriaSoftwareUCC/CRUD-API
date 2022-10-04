@@ -1,1 +1,0 @@
-/* Configuracion de la base datos */
