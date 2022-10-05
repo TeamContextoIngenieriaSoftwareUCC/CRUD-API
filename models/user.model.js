@@ -1,7 +1,7 @@
 const conection = require("../config/conection");
 
 class User{
-    constructor(name, email, password){
+    constructor({name, email, password}){
         this.name = name;
         this.email = email;
         this.password = password;
@@ -26,19 +26,7 @@ class User{
     /**
      * It's an async function that uses the await keyword to wait for the result of a query(insert) to the
      * database.
-     * 
-     * 
-     * If the query(insert) is successful, the function returns an object with a msg property and a data
-     * property.
-     * 
-     * If the query is unsuccessful, the function returns an object with an error property.
-     * 
-     * The function is called like this:
-     * 
-     * const user = new User({name: "John", email: "john@example.com", password: "123456"});
-     * const result = await user.post();
-     * console.log(result);
-     * @returns The return is a promise, so you can use the .then() method to get the data.
+     * @returns The result of the query
      */
     async post(){
         try {
@@ -47,7 +35,7 @@ class User{
                  VALUES ("${this.name}","${this.email}","${this.password}")`,
                 { type: conection.QueryTypes.INSERT }
             );
-            return {msg: "Ok", data};
+            return {data};
         } catch (error) {
             return { error: error.message };
         }
@@ -100,6 +88,7 @@ class User{
 			    { type: conection.QueryTypes.DELETE }
             );
             const { name } = query[0];
+
             return {msg: "Se elimino con exito el usuario " + name};
         } catch (error) {
             return { error: error.message };
