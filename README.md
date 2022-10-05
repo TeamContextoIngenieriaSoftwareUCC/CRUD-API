@@ -1,2 +1,3 @@
 # CRUD-API
-Samil Felipe Arias
+ - Samil Felipe Arias (samfelip)
+ - Juan Sebastian Rios (Juansecod)
